@@ -1,0 +1,261 @@
+<!DOCTYPE html> 
+<html lang="en">
+<head>
+   
+    <meta charset="UTF-8">
+    <title>jquery</title>
+</head>
+<body>
+<style>
+       #jquerydemo{
+           font-family: cursive;
+           background-color: aquamarine;
+    }
+          .after {
+        width:  100px;
+        height: 250px;
+        border: 1px solid black;
+        margin: 2px;
+               background-color: yellow;
+           }
+    .before {
+        width:  100px;
+        height: 250px;
+        border: 1px solid black;
+        margin: 2px;
+         background-color: red;
+           } 
+    .prepend {
+        width:  100px;
+        height: 250px;
+        border: 1px solid black;
+        margin: 2px;
+        background-color: aquamarine;
+        float: center;
+           }
+    .append {
+        width:  100px;
+        height: 250px;
+        border: 1px solid black;
+        margin: 2px;
+         background-color:blue;
+        float: right;
+           } 
+        
+       
+    </style>
+
+
+<div>
+    <button id="btn1">attach data to div elements</button><br><br><br>
+     <button id="btn2">Get data attach to div elements</button>
+     <div id="dataexample"> </div>
+</div>
+ 
+ <ul>
+     <li>
+         <a href="google.com">gogle</a>
+     </li>
+     <li class="middle">
+         <a href="yahoo.com">yaho</a>
+     </li>
+     <li>
+         <a target="_self"  href="amazon.com">Amazon</a>
+     </li>
+ </ul>
+  <div>
+      <div class="color-box afte">box will after text</div>
+  </div>
+   
+   <a target="_blank" href="chelsea.com" id="master">chelsea</a>
+   
+   <div id="clone">
+       
+   </div>
+   <button id="linkfix">clone link</button>
+   
+   
+    <h1 class="head">jquery trials</h1>
+    <div id="jquerydemo"></div>
+   <div id="jdemo">
+       <ul id="list1">
+    <li>come</li>
+    <li>day</li>
+    <li>night</li>
+    <li>night</li>
+   <button>click me</button>
+    </ul>
+    <div>
+   </div>
+   <div class="container">content
+  </div>
+   <div class="color_box before">
+   before
+   </div>
+   <div class="color_box append">
+   append
+   </div>
+   <div class="color_box prepend">
+   prepend
+   </div>
+   </div>
+   <button id="show">show content</button><br><br>
+   <button id="hide">hide content</button><br><br>
+   <button id="animate">animate</button><br><br>
+   <div id="form">
+      <form method="get" action="jdemo.html">
+          <h3>Registration</h3>
+          Name:<input type="text" name="name">
+          Email:<input type="text" name="email">
+          Password:<input type="password" name="password">
+          //$('input:text').val();
+          //$('input:password').val(12345); in console
+          //$('input:radio:nth(0)').prop('checked');
+          
+      </form>
+       
+   </div>
+   
+    <div id="browser">
+    <a href="www.google.com" id="master" target="_blank">google</a><br>
+    <a href="www.yahoo.com" target="_parent">yahoo</a><br>
+    <a href="www.gmail.com" target="_self">gmail</a> 
+    </div>   
+    <script src="./jQuery.js"></script>
+    <script>
+        
+        console.log($);
+        console.log(jQuery);
+        console.log($==jQuery); // all are equal
+        
+        console.log("line 24");
+        console.log("line 31");
+        console.log("line 32");
+        console.log("line 33");//All produced in console 
+        
+    $(document).ready(function(){
+        $('#jquerydemo').text('webpage is ready').css('color','red').css('background-color', 'yellow').css('font-weight', '700');//id selectors
+    console.log('document ready!!');
+        $('.head').css('color', 'purple');// class selectors
+        $('a[target=_parent]').css('color', 'red'); //css() in jquery attribute selectors
+        $('a[target=_blank]').text('google!')
+        //$('*').css('color', 'red'); // universal selector( not recommended)
+        $('#list1 >li:last').css('font-weight', '700');
+        //traversing DOM
+        
+        $("button").click(function(){
+            $('#list1 >li:first').css('color','yellow');
+            $('#browser').find("a[target=_blank]").css('border','1px solid black'); //find()
+            $('#browser').children("a").css('color','yellow');
+            $('#browser').closest("a").css('color','green');
+            $('#browser').parent("a").css('border','1px solid black');
+            
+           
+            
+        });
+    });
+        
+        $(document).ready(function(){
+          $('#linkfix').click(function(){
+                $('#master').clone().insertAfter('#clone');
+            });
+            $('.after').click(function(){
+                $('.after').clone().insertAfter('.color-box');
+            })
+        });
+        var num = [1,2,3,4,5,6];
+        $.each(num, function(index, value){
+            console.log(index, value); //brings each index with its value
+            
+        });
+        $('li').each(function(index, element){
+            //console.log(typeof element); //object
+            //console.log($(this).toggleClass());
+           $('li').eq(1).toggleClass('golden-link');
+            $('li').eq(2  ).toggleClass('golden-link');
+            
+            $("#btn1").click(function(){
+                $("#dataexample").data({cart: 300, "items":4});
+                });
+                $("#btn2").click(function(){
+         console.log($("#dataexample").data("cart"));
+                    console.log($("#dataexample").data("items"));
+                    
+                
+                   
+            });
+           // $('#show-hide').click(function(){
+                //$("p").hide(1000);
+           // });
+        });
+       
+        
+         
+        //manipulation functions
+          
+    </script>
+    
+    <script>
+    /*$('#show').click(function(){
+        $('.color_box').show(700);
+        
+    });
+        $('#hide').click(function(){
+            $('.color_box').hide(700);
+            */
+            $('#show').click(function(){
+        $('.color_box').fadein(2000, 0.5);
+        
+    });
+        $('#hide').click(function(){
+            $('.color_box').fadeOut(2000);
+             $('.color_box').fadeTo(2000, 1);
+        });
+         $('#animate').click(function(){
+$('.color_box').animate({'width':'2000','margin-top':'40px','opacity':'0.8'},2000);
+        });
+         // if toggle then one button
+    </script>
+    <div id="container">
+        <input type="text" id="answer_box"/>
+        <p id="result"></p>
+        <p id="answer"></p>
+        <button>submit</button>
+        </div>
+        
+        <script>
+    $(document).ready(function(){
+        $('button').click(function(){
+          var result = $('#result').val();
+            if(result=='joseph'){
+                $('#result').text('your name is correct');
+            }else{
+                $('#result').text('your name is wrong');}
+            
+                $('#browser').attr('target','_parent');
+            var targetValues = $('#browser').attr('target');
+            if(targetValues=='_self'){
+               $('#browser').attr('target').attr('target','_blank');
+            }else{
+                console.log($('#browser').text());
+            } 
+            //modifying properties 
+             $('#browser').removeAttr('href');
+            $('#browser').removeClass('.color_box before');
+            //$('#browser').removeData('');
+            if($('#browser').hasClass('after')==true){
+                $('a').addClass('gold-link'); 
+            }
+            
+        });
+        
+    });
+           
+          
+    </script>
+  
+ 
+
+ 
+</body>
+</html>
